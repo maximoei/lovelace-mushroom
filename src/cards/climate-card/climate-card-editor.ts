@@ -12,9 +12,9 @@ import { HaFormSchema } from "../../utils/form/ha-form";
 import { stateIcon } from "../../utils/icons/state-icon";
 import { loadHaComponents } from "../../utils/loader";
 import { CLIMATE_CARD_EDITOR_NAME, CLIMATE_ENTITY_DOMAINS } from "./const";
-import { ClimateCardConfig, climateCardConfigStruct, HVAC_MODES } from "./climate-card-config";
+import { ClimateCardConfig, climateCardConfigStruct, HVAC_MODES, PRESETS } from "./climate-card-config";
 
-const CLIMATE_LABELS = ["hvac_modes", "show_temperature_control"] as string[];
+const CLIMATE_LABELS = ["hvac_modes", "presets", "show_temperature_control"] as string[];
 
 const computeSchema = memoizeOne((localize: LocalizeFunc, icon?: string): HaFormSchema[] => [
     { name: "entity", selector: { entity: { domain: CLIMATE_ENTITY_DOMAINS } } },
@@ -32,6 +32,19 @@ const computeSchema = memoizeOne((localize: LocalizeFunc, icon?: string): HaForm
                         options: HVAC_MODES.map((mode) => ({
                             value: mode,
                             label: localize(`component.climate.state._.${mode}`),
+                        })),
+                        mode: "dropdown",
+                        multiple: true,
+                    },
+                },
+            },
+            {
+                name: "presets",
+                selector: {
+                    select: {
+                        options: PRESETS.map((mode) => ({
+                            value: mode,
+                            label: localize(`component.climate.attributes.preset_modes._.${mode}`),
                         })),
                         mode: "dropdown",
                         multiple: true,
