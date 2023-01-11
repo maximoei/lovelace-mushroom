@@ -34,16 +34,19 @@ import { Layout } from "../../utils/layout";
 import { ClimateCardConfig } from "./climate-card-config";
 import { CLIMATE_CARD_EDITOR_NAME, CLIMATE_CARD_NAME, CLIMATE_ENTITY_DOMAINS } from "./const";
 import "./controls/climate-hvac-modes-control";
-import { isHvacModesVisible } from "./controls/climate-hvac-modes-control";
+import "./controls/climate-presets-control";
 import "./controls/climate-temperature-control";
+import { isHvacModesVisible } from "./controls/climate-hvac-modes-control";
+import { isPresetsVisible } from "./controls/climate-presets-control";
 import { isTemperatureControlVisible } from "./controls/climate-temperature-control";
 import { getHvacActionColor, getHvacActionIcon, getHvacModeColor } from "./utils";
 
-type ClimateCardControl = "temperature_control" | "hvac_mode_control";
+type ClimateCardControl = "temperature_control" | "hvac_mode_control" | "preset_control";
 
 const CONTROLS_ICONS: Record<ClimateCardControl, string> = {
     temperature_control: "mdi:thermometer",
-    hvac_mode_control: "mdi:thermostat",
+    hvac_mode_control: "mdi:thermostat",    
+    preset_control: "mdi:format-list-checks",
 };
 
 registerCustomCard({
@@ -118,6 +121,9 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
             }
             if (isHvacModesVisible(entity, this._config.hvac_modes)) {
                 controls.push("hvac_mode_control");
+            }
+            if (isPresetsVisible(entity, this._config.presets)) {
+                controls.push("preset_control");
             }
         }
 
@@ -252,6 +258,7 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
 
     private renderActiveControl(entity: ClimateEntity): TemplateResult | null {
         const hvac_modes = this._config?.hvac_modes ?? [];
+        const presets = this._config?.presets ?? [];
 
         switch (this._activeControl) {
             case "temperature_control":
@@ -270,6 +277,15 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
                         .modes=${hvac_modes}
                         .fill=${true}
                     ></mushroom-climate-hvac-modes-control>
+                `;            
+            case "preset_control":
+                return html`
+                    <mushroom-climate-presets-control
+                        .hass=${this.hass}
+                        .entity=${entity}
+                        .modes=${presets}
+                        .fill=${true}
+                    ></mushroom-climate-presets-control>
                 `;
             default:
                 return null;
@@ -286,6 +302,9 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
                 }
                 mushroom-climate-temperature-control,
                 mushroom-climate-hvac-modes-control {
+                    flex: 1;
+                },
+                mushroom-climate-presets-control {
                     flex: 1;
                 }
             `,
