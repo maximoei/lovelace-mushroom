@@ -1,5 +1,5 @@
 import { array, assign, boolean, object, optional, string } from "superstruct";
-import { HvacMode, LovelaceCardConfig } from "../../ha";
+import { HvacMode, Preset, LovelaceCardConfig } from "../../ha";
 import { ActionsSharedConfig, actionsSharedConfigStruct } from "../../shared/config/actions-config";
 import {
     AppearanceSharedConfig,
@@ -18,13 +18,21 @@ export const HVAC_MODES: HvacMode[] = [
     "off",
 ];
 
+export const PRESETS: Preset[] = [
+    "away",
+    "home",
+    "comfort",
+    "sleep",
+    "eco"
+];
+
 export type ClimateCardConfig = LovelaceCardConfig &
     EntitySharedConfig &
     AppearanceSharedConfig &
     ActionsSharedConfig & {
         show_temperature_control?: false;
         hvac_modes?: HvacMode[];
-        presets?: [];
+        presets?: Preset[];
         collapsible_controls?: boolean;
     };
 
