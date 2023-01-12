@@ -68,10 +68,10 @@ export const CLIMATE_PRESET_ICONS: Record<Preset, string> = {
     eco: "mdi:leaf",
 };
 
-export function getPresetColor(hvacMode: Preset): string {
+export function getPresetColor(preset: Preset): string {
     return CLIMATE_PRESET_COLORS[preset] ?? CLIMATE_PRESET_COLORS.off;
 }
 
-export function getPresetIcon(hvacMode: Preset): string {
+export function getPresetIcon(preset: Preset): string {
     return CLIMATE_HVAC_MODE_ICONS[preset] ?? "mdi:logout";
 }
