@@ -283,7 +283,7 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
                     <mushroom-climate-presets-control
                         .hass=${this.hass}
                         .entity=${entity}
-                        .modes=${presets}
+                        .presets=${presets}
                         .fill=${true}
                     ></mushroom-climate-presets-control>
                 `;
