@@ -51,7 +51,7 @@ export class ClimatePresetsControl extends LitElement {
 
     private renderPresetButton(preset: Preset) {
         const iconStyle = {};
-        const color = preset === "off" ? "var(--rgb-grey)" : getPresetColor(preset);
+        const color = getPresetColor(preset);
         if (preset === this.entity.attributes.preset_mode) {
             iconStyle["--icon-color"] = `rgb(${color})`;
             iconStyle["--bg-color"] = `rgba(${color}, 0.2)`;
