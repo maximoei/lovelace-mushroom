@@ -69,7 +69,7 @@ export const CLIMATE_PRESET_ICONS: Record<Preset, string> = {
 };
 
 export function getPresetColor(preset: Preset): string {
-    return CLIMATE_PRESET_COLORS[preset] ?? CLIMATE_PRESET_COLORS.off;
+    return CLIMATE_PRESET_COLORS[preset];
 }
 
 export function getPresetIcon(preset: Preset): string {
