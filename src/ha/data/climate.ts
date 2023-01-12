@@ -63,7 +63,7 @@ export const compareClimateHvacModes = (mode1: HvacMode, mode2: HvacMode) =>
 const presetOrdering: { [key in Preset]: number } = {
     away: 1,
     home: 2,
-    cpmfort: 3,
+    comfort: 3,
     sleep: 4,
     eco: 5
 };
