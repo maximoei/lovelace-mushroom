@@ -133,7 +133,8 @@
             },
             "climate": {
                 "show_temperature_control": "Temperature control?",
-                "hvac_modes": "HVAC Modes"
+                "hvac_modes": "HVAC Modes",
+                "presets": "Presets"
             }
         },
         "chip": {
