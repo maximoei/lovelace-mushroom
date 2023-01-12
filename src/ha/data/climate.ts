@@ -66,5 +66,5 @@ const presetOrdering: { [key in Preset]: number } = {
     eco: 5
 };
 
-export const compareClimatePresetModes = (mode1: Preset, mode2: Preset) =>
-    presetModeOrdering[mode1] - presetModeOrdering[mode2];
+export const compareClimatePreset = (mode1: Preset, mode2: Preset) =>
+    presetOrdering[mode1] - presetOrdering[mode2];
