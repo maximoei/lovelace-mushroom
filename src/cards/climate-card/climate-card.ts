@@ -122,9 +122,9 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
             if (isHvacModesVisible(entity, this._config.hvac_modes)) {
                 controls.push("hvac_mode_control");
             }
-            if (isPresetsVisible(entity, this._config.presets)) {
+            //if (isPresetsVisible(entity, this._config.presets)) {
                 controls.push("preset_control");
-            }
+            //}
         }
 
         this._controls = controls;
@@ -185,14 +185,12 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
                     </mushroom-state-item>
                     ${this._controls.length > 0
                         ? html`
-                              <div class="actions" ?rtl=${rtl}>
-                                  ${this.renderActiveControl(entity)}${this.renderOtherControls()}
-                              </div>
+                              ${this.renderActiveControl(entity,rtl)}
                           `
-                        : null}
+                        : null}   
                 </mushroom-card>
             </ha-card>
-        `;
+        `;  //${this.renderOtherControls()}
     }
 
     protected renderIcon(entity: ClimateEntity, icon: string): TemplateResult {
@@ -256,40 +254,66 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
         `;
     }
 
-    private renderActiveControl(entity: ClimateEntity): TemplateResult | null {
+    private renderActiveControl(entity: ClimateEntity, rtl: boolean): TemplateResult | null {
         const hvac_modes = this._config?.hvac_modes ?? [];
         const presets = this._config?.presets ?? [];
 
-        switch (this._activeControl) {
-            case "temperature_control":
-                return html`
-                    <mushroom-climate-temperature-control
-                        .hass=${this.hass}
-                        .entity=${entity}
-                        .fill=${true}
-                    ></mushroom-climate-temperature-control>
-                `;
-            case "hvac_mode_control":
-                return html`
-                    <mushroom-climate-hvac-modes-control
-                        .hass=${this.hass}
-                        .entity=${entity}
-                        .modes=${hvac_modes}
-                        .fill=${true}
-                    ></mushroom-climate-hvac-modes-control>
-                `;            
-            case "preset_control":
-                return html`
-                    <mushroom-climate-presets-control
-                        .hass=${this.hass}
-                        .entity=${entity}
-                        .presets=${presets}
-                        .fill=${true}
-                    ></mushroom-climate-presets-control>
-                `;
-            default:
-                return null;
-        }
+        return html`
+            <div class="actions" ?rtl=${rtl}>
+                <mushroom-climate-temperature-control
+                    .hass=${this.hass}
+                    .entity=${entity}
+                    .fill=${true}
+                ></mushroom-climate-temperature-control>
+            </div>
+            <div class="actions" ?rtl=${rtl}>
+                <mushroom-climate-hvac-modes-control
+                    .hass=${this.hass}
+                    .entity=${entity}
+                    .modes=${hvac_modes}
+                    .fill=${true}
+                ></mushroom-climate-hvac-modes-control>
+            </div>
+            <div class="actions" ?rtl=${rtl}>
+                <mushroom-climate-presets-control
+                    .hass=${this.hass}
+                    .entity=${entity}
+                    .presets=${presets}
+                    .fill=${true}
+                ></mushroom-climate-presets-control>
+            </div>
+        `;
+
+        //switch (this._activeControl) {
+        //     case "temperature_control":
+        //         return html`
+        //             <mushroom-climate-temperature-control
+        //                 .hass=${this.hass}
+        //                 .entity=${entity}
+        //                 .fill=${true}
+        //             ></mushroom-climate-temperature-control>
+        //         `;
+        //     case "hvac_mode_control":
+        //         return html`
+        //             <mushroom-climate-hvac-modes-control
+        //                 .hass=${this.hass}
+        //                 .entity=${entity}
+        //                 .modes=${hvac_modes}
+        //                 .fill=${true}
+        //             ></mushroom-climate-hvac-modes-control>
+        //         `;            
+        //     case "preset_control":
+        //         return html`
+        //             <mushroom-climate-presets-control
+        //                 .hass=${this.hass}
+        //                 .entity=${entity}
+        //                 .presets=${presets}
+        //                 .fill=${true}
+        //             ></mushroom-climate-presets-control>
+        //         `;
+        //     default:
+        //         return null;
+        // }
     }
 
     static get styles(): CSSResultGroup {
@@ -301,9 +325,7 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
                     cursor: pointer;
                 }
                 mushroom-climate-temperature-control,
-                mushroom-climate-hvac-modes-control {
-                    flex: 1;
-                },
+                mushroom-climate-hvac-modes-control,
                 mushroom-climate-presets-control {
                     flex: 1;
                 }

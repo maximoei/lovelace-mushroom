@@ -13,8 +13,8 @@ import "../../../shared/button";
 import "../../../shared/button-group";
 import { getPresetColor, getPresetIcon } from "../utils";
 
-export const isPresetsVisible = (entity: ClimateEntity, presets?: Preset[]) =>
-    (entity.attributes.presets || []).some((preset) => (presets ?? []).includes(preset));
+export const isPresetsVisible = (entity: ClimateEntity, presets?: string[]) =>
+    (entity.attributes.preset_modes || []).some((preset) => (presets ?? []).includes(preset));
 
 @customElement("mushroom-climate-presets-control")
 export class ClimatePresetsControl extends LitElement {
@@ -22,13 +22,13 @@ export class ClimatePresetsControl extends LitElement {
 
     @property({ attribute: false }) public entity!: ClimateEntity;
 
-    @property({ attribute: false }) public presets!: Preset[];
+    @property({ attribute: false }) public presets!: string[];
 
     @property() public fill: boolean = false;
 
     private callService(e: CustomEvent) {
         e.stopPropagation();
-        const preset = (e.target! as any).preset as Preset;
+        const preset = (e.target! as any).preset as string;
         this.hass.callService("climate", "set_preset_mode", {
             entity_id: this.entity!.entity_id,
             preset_mode: preset,
@@ -38,9 +38,10 @@ export class ClimatePresetsControl extends LitElement {
     protected render(): TemplateResult {
         const rtl = computeRTL(this.hass);
 
-        const presets = this.entity.attributes.presets
+        const presets = (this.entity.attributes.preset_modes ?? []
+            )
             .filter((preset) => (this.presets ?? []).includes(preset))
-            .sort(compareClimatePresets);
+            //.sort(compareClimatePresets);
 
         return html`
             <mushroom-button-group .fill=${this.fill} ?rtl=${rtl}>
@@ -49,7 +50,7 @@ export class ClimatePresetsControl extends LitElement {
         `;
     }
 
-    private renderPresetButton(preset: Preset) {
+    private renderPresetButton(preset: string) {
         const iconStyle = {};
         const color = getPresetColor(preset);
         if (preset === this.entity.attributes.preset_mode) {

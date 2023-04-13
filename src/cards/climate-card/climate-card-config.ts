@@ -18,7 +18,7 @@ export const HVAC_MODES: HvacMode[] = [
     "off",
 ];
 
-export const PRESETS: Preset[] = [
+export const PRESETS: string[] = [
     "away",
     "home",
     "comfort",
@@ -32,7 +32,7 @@ export type ClimateCardConfig = LovelaceCardConfig &
     ActionsSharedConfig & {
         show_temperature_control?: false;
         hvac_modes?: HvacMode[];
-        presets?: Preset[];
+        presets?: string[];
         collapsible_controls?: boolean;
     };
 

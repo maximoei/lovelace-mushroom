@@ -1,7 +1,7 @@
 import { css } from "lit";
 
 export const themeVariables = css`
-    --spacing: var(--mush-spacing, 12px);
+    --spacing: 12px;
 
     /* Title */
     --title-padding: var(--mush-title-padding, 24px 12px 16px);
@@ -42,7 +42,7 @@ export const themeVariables = css`
         var(--ha-card-background, var(--card-background-color, white))
     );
     /* Controls */
-    --control-border-radius: var(--mush-control-border-radius, 12px);
+    --control-border-radius: var(--mush-control-border-radius, 8px);
     --control-height: var(--mush-control-height, 42px);
     --control-button-ratio: var(--mush-control-button-ratio, 1);
     --control-icon-size: var(--mush-control-icon-size, 0.5em);
@@ -142,4 +142,10 @@ export const themeColorCss = css`
     --rgb-state-climate-heat-cool: var(--mush-rgb-state-climate-heat-cool, var(--rgb-green));
     --rgb-state-climate-idle: var(--mush-rgb-state-climate-idle, var(--rgb-disabled));
     --rgb-state-climate-off: var(--mush-rgb-state-climate-off, var(--rgb-disabled));
+
+    --rgb-state-climate-away: var(--mush-rgb-state-climate-away, var(--rgb-blue));
+    --rgb-state-climate-home: var(--mush-rgb-state-climate-home, var(--rgb-orange));
+    --rgb-state-climate-sleep: var(--mush-rgb-state-climate-sleep, var(--rgb-teal));
+    --rgb-state-climate-comfort: var(--mush-rgb-state-climate-comfort, var(--rgb-deep-orange));
+    --rgb-state-climate-eco: var(--mush-rgb-state-climate-eco, var(--rgb-green));
 `;

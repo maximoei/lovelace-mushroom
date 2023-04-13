@@ -44,7 +44,7 @@ const computeSchema = memoizeOne((localize: LocalizeFunc, icon?: string): HaForm
                     select: {
                         options: PRESETS.map((preset) => ({
                             value: preset,
-                            label: localize(`component.climate.attributes.presets._.${preset}`),
+                            label: preset, //localize(`component.climate.attributes.presets._.${preset}`),
                         })),
                         mode: "dropdown",
                         multiple: true,

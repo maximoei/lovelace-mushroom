@@ -13,8 +13,8 @@ export type ClimateEntity = HassEntityBase & {
         hvac_mode: HvacMode;
         hvac_modes: HvacMode[];
         hvac_action?: HvacAction;
-        preset: Preset;
-        presets: Preset[];
+        //preset: Preset;
+        //presets: Preset[];
         current_temperature: number;
         min_temp: number;
         max_temp: number;

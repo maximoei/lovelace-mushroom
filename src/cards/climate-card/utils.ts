@@ -52,26 +52,26 @@ export function getHvacActionIcon(hvacAction: HvacAction): string | undefined {
     return CLIMATE_HVAC_ACTION_ICONS[hvacAction] ?? "";
 }
 
-export const CLIMATE_PRESET_COLORS: Record<Preset, string> = {
-    away: "var(--rgb-state-climate-away)",
-    home: "var(--rgb-state-climate-home)",
-    comfort: "var(--rgb-state-climate-comfort)",
-    sleep: "var(--rgb-state-climate-sleep)",
-    eco: "var(--rgb-state-climate-eco)",
+export const CLIMATE_PRESET_COLORS: Record<string, string> = {
+    "away": "var(--rgb-state-climate-away)",
+    "home": "var(--rgb-state-climate-home)",
+    "comfort": "var(--rgb-state-climate-comfort)",
+    "sleep": "var(--rgb-state-climate-sleep)",
+    "eco": "var(--rgb-state-climate-eco)",
 };
 
-export const CLIMATE_PRESET_ICONS: Record<Preset, string> = {
-    away: "mdi:logout",
-    home: "mdi:home",
-    comfort: "mdi:sofa",
-    sleep: "mdi:power-sleep",
-    eco: "mdi:leaf",
+export const CLIMATE_PRESET_ICONS: Record<string, string> = {
+    "away": "mdi:logout",
+    "home": "mdi:home",
+    "comfort": "mdi:sofa",
+    "sleep": "mdi:power-sleep",
+    "eco": "mdi:leaf",
 };
 
-export function getPresetColor(preset: Preset): string {
+export function getPresetColor(preset: string): string {
     return CLIMATE_PRESET_COLORS[preset];
 }
 
-export function getPresetIcon(preset: Preset): string {
-    return CLIMATE_HVAC_MODE_ICONS[preset] ?? "mdi:logout";
+export function getPresetIcon(preset: string): string {
+    return CLIMATE_PRESET_ICONS[preset] ?? "mdi:logout";
 }
