@@ -85,7 +85,9 @@
             },
             "title": {
                 "title": "Title",
-                "subtitle": "Subtitle"
+                "subtitle": "Subtitle",
+                "title_tap_action": "Title tap action",
+                "subtitle_tap_action": "Subtitle tap action"
             },
             "chips": {
                 "alignment": "Alignment"
@@ -135,6 +137,14 @@
                 "show_temperature_control": "Temperature control?",
                 "hvac_modes": "HVAC Modes",
                 "presets": "Presets"
+            },
+            "number": {
+                "display_mode": "Display Mode",
+                "display_mode_list": {
+                    "default": "Default (slider)",
+                    "slider": "Slider",
+                    "buttons": "Buttons"
+                }
             }
         },
         "chip": {

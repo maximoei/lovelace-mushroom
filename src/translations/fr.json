@@ -84,7 +84,9 @@
             },
             "title": {
                 "title": "Titre",
-                "subtitle": "Sous-titre"
+                "subtitle": "Sous-titre",
+                "title_tap_action": "Appui sur le titre",
+                "subtitle_tap_action": "Appui sur le sous-titre"
             },
             "chips": {
                 "alignment": "Alignement"
@@ -133,6 +135,14 @@
             "climate": {
                 "show_temperature_control": "Contrôle de la température?",
                 "hvac_modes": "Modes du thermostat"
+            },
+            "number": {
+                "display_mode": "Mode d'affichage",
+                "display_mode_list": {
+                    "default": "Par défaut (Curseur)",
+                    "slider": "Curseur",
+                    "buttons": "Boutons"
+                }
             }
         },
         "chip": {
