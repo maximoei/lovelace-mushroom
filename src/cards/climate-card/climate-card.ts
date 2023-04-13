@@ -214,6 +214,7 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
     protected renderBadge(entity: ClimateEntity) {
         const unavailable = !isAvailable(entity);
         if (unavailable) {
+
             return super.renderBadge(entity);
         } else {
             return this.renderActionBadge(entity);
@@ -255,10 +256,10 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
         `;
     }
 
-<<<<<<< HEAD
     private renderActiveControl(entity: ClimateEntity, rtl: boolean): TemplateResult | null {
-        const hvac_modes = this._config?.hvac_modes ?? [];
+        const hvac_modes = this._config!.hvac_modes ?? [];
         const presets = this._config?.presets ?? [];
+        //const appearance = computeAppearance(this._config!);
 
         return html`
             <div class="actions" ?rtl=${rtl}>
@@ -316,33 +317,6 @@ export class ClimateCard extends MushroomBaseCard implements LovelaceCard {
         //     default:
         //         return null;
         // }
-=======
-    private renderActiveControl(entity: ClimateEntity): TemplateResult | null {
-        const hvac_modes = this._config!.hvac_modes ?? [];
-        const appearance = computeAppearance(this._config!);
-
-        switch (this._activeControl) {
-            case "temperature_control":
-                return html`
-                    <mushroom-climate-temperature-control
-                        .hass=${this.hass}
-                        .entity=${entity}
-                        .fill=${appearance.layout !== "horizontal"}
-                    ></mushroom-climate-temperature-control>
-                `;
-            case "hvac_mode_control":
-                return html`
-                    <mushroom-climate-hvac-modes-control
-                        .hass=${this.hass}
-                        .entity=${entity}
-                        .modes=${hvac_modes}
-                        .fill=${appearance.layout !== "horizontal"}
-                    ></mushroom-climate-hvac-modes-control>
-                `;
-            default:
-                return null;
-        }
->>>>>>> upstream/main
     }
 
     static get styles(): CSSResultGroup {
